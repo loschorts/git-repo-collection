@@ -45,8 +45,5 @@ class Fixnum
 
 end
 
-p 123456887756.in_words
-
-
 
 

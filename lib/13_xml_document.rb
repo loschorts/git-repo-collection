@@ -52,5 +52,3 @@ class XmlDocument
 		tag
 	end
 end
-
-XmlDocument.new
