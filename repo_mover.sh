@@ -20,9 +20,9 @@ while read name; do
     mv temp_for_rename $address/$address
 
     #merge the repo into the mega_repo
-    cd ~/Desktop/$megarepo
+    cd  $megarepo
     git remote add $name $address
     git pull $name master
+    cd ../
 done
 
-cd ~/Desktop/$megarepo
