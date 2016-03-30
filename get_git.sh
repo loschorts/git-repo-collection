@@ -4,7 +4,7 @@ require 'httpclient'
 require 'json'
 require 'byebug'
 
-File.write("repo_names", nil)
+File.write("staging/repo_names", nil)
 
 
 def get_repo_names username
@@ -32,7 +32,7 @@ def repo_name git_url
 	git_url.split("/").last.split(".").first
 end
 
-File.write("repo_names", get_repo_names(ARGV[0]).join("\n"))
+File.write("staging/repo_names", get_repo_names(ARGV[0]).join("\n"))
 
 
 
