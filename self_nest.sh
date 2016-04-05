@@ -1,18 +1,5 @@
 #!/bin/bash
 
-user=$1
-megarepo=$2
-
-if [! megarepo ];
-    then exit;
-done
-
-./get_git.sh $user
-
-cd staging
-
-git clone git@github.com:loschorts/$megarepo.git
-
 cat repo_names | \
 while read name; do
     address=git@github.com:$user/$name.git
@@ -29,4 +16,3 @@ while read name; do
     git pull $name master
     
 done
-

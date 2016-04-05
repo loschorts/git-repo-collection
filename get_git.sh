@@ -6,7 +6,6 @@ require 'byebug'
 
 File.write("staging/repo_names", nil)
 
-
 def get_repo_names username
 
 	req = HTTPClient.new
