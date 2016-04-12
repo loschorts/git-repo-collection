@@ -1,16 +1,38 @@
 #!/usr/bin/env ruby
 
-require ("selenium-webdriver")
+require "selenium-webdriver"
+require "pry"
+require "byebug"
 
 username = ARGV[0]
 URL = "https://github.com/#{username}/"
 
+raise "no username" unless username
+
 driver = Selenium::WebDriver.for :firefox
 
-driver.navigate_to URL
+driver.get URL + "/go/ahead/and/log/in"
+:wait until driver.title != "Page not found · GitHub"
 
 File.readlines("staging/repo_names").each do |repo|
-	driver.navigate_to URL + "/#{repo}/settings"
-	driver.find_elements(class: "btn btn-danger boxed-action", )
-	debugger
+	repo.strip!
+	cur_url = URL + "#{repo}/settings"
+	driver.get cur_url
+
+	delete_button = driver
+		.find_elements(tag_name: "button")
+		.select do |btn| 
+			btn.attribute("data-facebox") == "#delete_repo_confirm"
+		end
+		.first
+
+	delete_button.click
+
+	driver
+		.find_elements(name: "verify")
+		.last
+		.send_keys("#{repo}")
+
+	:wait until driver.current_url != cur_url
+	driver.get ""
 end

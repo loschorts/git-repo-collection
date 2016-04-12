@@ -1,9 +1,7 @@
-#!/bin/env ruby
+#!/usr/bin/env ruby
 
-user=ARGV[0]
-megarepo=ARGV[1]
-
-Dir.chdir(File.absolute_path(__FILE__))
+user = ARGV[0]
+megarepo = ARGV[1]
 
 raise 'must provide username and megarepo name' unless user && megarepo
 
