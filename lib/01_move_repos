@@ -24,4 +24,5 @@ File.readlines("repo_names").each do |repo|
     system "cd  #{megarepo}"
     system "git remote add #{repo} #{address}"
     system "git pull #{repo} master"
+    system "cd .."
 end
