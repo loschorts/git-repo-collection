@@ -5,7 +5,7 @@ megarepo = ARGV[1]
 
 raise 'must provide username and megarepo name' unless user && megarepo
 
-Dir.chdir "staging"
+Dir.chdir "lib/staging"
 
 system "git clone git@github.com:#{user}/#{megarepo}.git"
 

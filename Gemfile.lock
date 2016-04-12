@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+<<<<<<< HEAD
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     ffi (1.9.10)
@@ -12,14 +13,34 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     websocket (1.2.3)
+=======
+    diff-lcs (1.2.5)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+    rspec-core (3.2.3)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
+>>>>>>> b821a8e32694a33e9bedc3102db9868c1081c521
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+<<<<<<< HEAD
   httpclient
   json
   selenium-webdriver
 
 BUNDLED WITH
    1.11.2
+=======
+  rspec (~> 3.2.0)
+>>>>>>> b821a8e32694a33e9bedc3102db9868c1081c521

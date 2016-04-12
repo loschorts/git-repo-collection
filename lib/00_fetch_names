@@ -8,11 +8,11 @@ username = ARGV[0]
 raise "missing username" unless username
 
 begin
-    Dir.mkdir("staging")
+    Dir.mkdir("lib/staging")
 rescue 
 end
 
-File.write("staging/repo_names", nil)
+File.write("lib/staging/repo_names", nil)
 
 def get_repo_names username
 
@@ -27,7 +27,7 @@ def get_repo_names username
 		repos = JSON.parse(res.body)
 		raise 'No results found, check username' if repos.class == Hash && repos["message"] == "Not Found"
 		break if repos.empty?
-		result += repos.map { |repo| repo_name(repo["git_url"]) }.select { |name| !!(/w.d./ =~ name) || !!(/W.D./ =~ name) }
+		result += repos.map { |repo| repo_name(repo["git_url"]) }.select { |name| true }
 	end
 
 	result
@@ -37,7 +37,7 @@ def repo_name git_url
 	git_url.split("/").last.split(".").first
 end
 
-File.write("staging/repo_names", get_repo_names(username).join("\n"))
+File.write("lib/staging/repo_names", get_repo_names(username).join("\n"))
 
 
 
