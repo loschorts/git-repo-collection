@@ -3,9 +3,9 @@
 user=ARGV[0]
 megarepo=ARGV[1]
 
-raise 'must provide username and megarepo name' unless user && megarepo
+Dir.chdir(File.absolute_path(__FILE__))
 
-system "./fetch_repo_names #{user}"
+raise 'must provide username and megarepo name' unless user && megarepo
 
 Dir.chdir "staging"
 
@@ -26,6 +26,3 @@ File.readlines("repo_names").each do |repo|
     system "git remote add #{repo} #{address}"
     system "git pull #{repo} master"
 end
-
-Dir.chdir ("..")
-
