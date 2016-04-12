@@ -1,32 +1,31 @@
-#!/bin/bash
+#!/bin/env ruby
 
-user=$1
-megarepo=$2
+user=ARGV[0]
+megarepo=ARGV[1]
 
-if [! megarepo ];
-    then exit;
-done
+raise 'must provide username and megarepo name' unless user && megarepo
 
-./get_git.sh $user
+system "./fetch_repo_names #{user}"
 
-cd staging
+Dir.chdir "staging"
 
-git clone git@github.com:loschorts/$megarepo.git
+system "git clone git@github.com:#{user}/#{megarepo}.git"
 
-cat repo_names | \
-while read name; do
-    address=git@github.com:$user/$name.git
-
+File.readlines("repo_names").each do |repo|
+    address = "git@github.com:#{user}/#{repo}.git"
     #move all the files into a self-named folder
-    # git clone $address
-    # mkdir temp_for_rename
-    # mv $address/* temp_for_rename
-    # mv temp_for_rename $address/$address
+    system "git clone #{address}"
+
+    system "rmdir temp"
+    system "mkdir temp"
+    system "mv #{repo}/* temp"
+    system "mv temp #{repo}/#{repo}"
 
     #merge the repo into the mega_repo
-    cd  $megarepo
-    git remote add $name $address
-    git pull $name master
-    
-done
+    system "cd  #{megarepo}"
+    system "git remote add #{repo} #{address}"
+    system "git pull #{repo} master"
+end
+
+Dir.chdir ("..")
 
