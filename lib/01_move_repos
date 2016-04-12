@@ -10,6 +10,7 @@ Dir.chdir "lib/staging"
 system "git clone git@github.com:#{user}/#{megarepo}.git"
 
 File.readlines("repo_names").each do |repo|
+    repo.strip!
     address = "git@github.com:#{user}/#{repo}.git"
     #move all the files into a self-named folder
     system "git clone #{address}"
