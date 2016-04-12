@@ -3,6 +3,6 @@
 username = ARGV[0]
 megarepo = ARGV[1]
 
-system "00_fetch_names #{username}"
-system "01_move_repos #{username} #{megarepo}"
-system "02_clean_up #{username}"
+system "lib/00_fetch_names #{username}"
+system "lib/01_move_repos #{username} #{megarepo}"
+system "lib/02_clean_up #{username}"
